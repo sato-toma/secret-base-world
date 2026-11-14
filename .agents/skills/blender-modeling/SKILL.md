@@ -11,6 +11,7 @@ Blenderで3Dアセットを作成・編集・確認する作業を支援する�
 
 - Blender内のObject、Mesh、Material、UV、Sceneなどを作成・編集・確認するとき
 - Blender MCPを使った操作や、他ツール向けのアセット出力を行うとき
+- 参照元の資料は `tools/blender-modeling-tools/` サブモジュールにもある。未取得の場合は `git submodule update --init --recursive` を実行する。room固有の出力先より本プロジェクトの設定を優先する。
 
 ## 手順
 

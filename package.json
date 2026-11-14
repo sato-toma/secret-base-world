@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "mcp:blender": "node scripts/blender-mcp.mjs"
+    "mcp:blender": "node scripts/blender-mcp.mjs",
+    "fetch:cluster-script-api": "node scripts/fetch-cluster-script-api.cjs",
+    "build:clusterscripts": "npm run fetch:cluster-script-api && tsc --project scripts/cluster-script-tsconfig.json && node scripts/minify-clusterscripts.cjs"
   },
   "engines": {
     "node": ">=20"
@@ -12,5 +14,9 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
     "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
   }
 }

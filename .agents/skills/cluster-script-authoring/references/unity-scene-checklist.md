@@ -4,14 +4,16 @@ ClusterScript を配置する Unity シーンの構成と、解析までの手�
 
 ## 1. 解析ツールを準備する（任意）
 
-解析には `cck-scenegraph-tools` の `ts-analyzer` を使う。リポジトリ外の場合は、clone してビルドする。
+解析には固定された `cck-scenegraph-tools` サブモジュールの `ts-analyzer` を使う。リポジトリルートから準備する。
 
-```bash
-gh repo clone sato-toma/cck-scenegraph-tools
-cd cck-scenegraph-tools/packages/ts-analyzer
+```powershell
+git submodule update --init --recursive
+Set-Location tools\cck-scenegraph-tools\packages\ts-analyzer
 npm ci
 npm run build
 ```
+
+Unity Exporter は `UnityProject/Packages/manifest.json` から同じサブモジュールを参照する。Unity Editorを開く前にサブモジュールを初期化し、Package Manager の解決とコンパイル完了を確認する。
 
 ## 2. Item を構成する
 
@@ -43,7 +45,7 @@ Unity の batch export で `SceneGraph.toml` を作る。
   -projectPath "<UnityProjectPath>" `
   -executeMethod UnitySemanticGraph.Editor.Exporter.SelectiveComponentTomlExporter.ExportGraphToToml `
   -scenePath "Assets/<SceneName>.unity" `
-  -outputPath "Assets/SceneGraph.toml"
+  -outputPath "SceneGraph.generated.toml"
 ```
 
 終了コード `0` が成功、`1` が失敗。失敗時は Unity のログを確認する。
@@ -51,13 +53,13 @@ Unity の batch export で `SceneGraph.toml` を作る。
 解析は、`SceneGraph.toml` と ClusterScript ソースを指定する。
 
 ```bash
-node dist/cli.js analyze <path/to/SceneGraph.toml> <path/to/script.ts>
+node dist/cli.js analyze <path/to/SceneGraph.generated.toml> <path/to/script.ts>
 ```
 
 `--format json` などの出力形式は、`node dist/cli.js` のヘルプで確認する。
 
 ## 6. 結果の扱い
 
-- 解析が通ることは、Component 要件を満たしたことの確認である。Cluster 上での動作は別途確認が必要。
+- 解析は対応範囲のComponent要件を確認する。未対応・曖昧・未検証の結果は成功とみなさず、Cluster 上での動作は別途確認する。
 - Cluster の実機で確認していない場合は、その旨を報告する。
 - ワールドのアップロードは、ユーザーが明示的に依頼した場合のみ行う。

@@ -1,0 +1,6 @@
+[submodule "tools/cck-scenegraph-tools"]
+	path = tools/cck-scenegraph-tools
+	url = https://github.com/sato-toma/cck-scenegraph-tools.git
+[submodule "tools/blender-modeling-tools"]
+	path = tools/blender-modeling-tools
+	url = https://github.com/sato-toma/blender-modeling-tools.git

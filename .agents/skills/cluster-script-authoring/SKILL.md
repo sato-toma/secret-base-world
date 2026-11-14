@@ -13,7 +13,7 @@ Cluster Creator Kit で ClusterScript を書き、Unity シーンに配置する
 
 ## 参照資料
 
-- サンプル実装: `packages/unity-semantic-graph/Samples~/Assets/Script/src/` の ClusterScript（コールバック、State、Component 参照などの書き方）。リポジトリ外から使う場合は `gh repo clone sato-toma/cck-scenegraph-tools` で取得する。
+- サンプル実装: リポジトリ内 `tools/cck-scenegraph-tools/packages/unity-semantic-graph/Samples~/Assets/Script/src/` の ClusterScript。未取得の場合はリポジトリルートで `git submodule update --init --recursive` を実行する。
 - [Unity シーン構成チェックリスト](references/unity-scene-checklist.md): Item に付ける Component、ScriptableItem 参照、Export と解析の手順。
 
 ## 基本ルール

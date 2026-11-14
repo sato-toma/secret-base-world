@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "ES2022",
+    "lib": ["ES2023"],
+    "strict": true,
+    "noEmitOnError": true,
+    "rootDir": "../UnityProject/Assets/Project/Script/src",
+    "outDir": "../UnityProject/Assets/Project/Script/dist",
+    "skipLibCheck": true,
+    "typeRoots": ["../node_modules/@types"],
+    "types": ["cluster-script"]
+  },
+  "include": ["../UnityProject/Assets/Project/Script/src/**/*.ts"]
+}
