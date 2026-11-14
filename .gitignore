@@ -10,6 +10,8 @@ npm-debug.log*
 /UnityProject/[Bb]uilds/
 /UnityProject/[Ll]ogs/
 /UnityProject/[Uu]ser[Ss]ettings/
+/UnityProject/Assets/Temp/
+/UnityProject/Assets/Temp.meta
 /UnityProject/.vs/
 /UnityProject/.gradle/
 /UnityProject/SceneGraph.generated.toml
