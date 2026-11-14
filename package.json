@@ -6,7 +6,9 @@
   "scripts": {
     "mcp:blender": "node scripts/blender-mcp.mjs",
     "fetch:cluster-script-api": "node scripts/fetch-cluster-script-api.cjs",
-    "build:clusterscripts": "npm run fetch:cluster-script-api && tsc --project scripts/cluster-script-tsconfig.json && node scripts/minify-clusterscripts.cjs"
+    "compile:clusterscripts": "tsc --project scripts/cluster-script-tsconfig.json",
+    "minify:clusterscripts": "node scripts/minify-clusterscripts.cjs",
+    "build:clusterscripts": "npm run fetch:cluster-script-api && npm run compile:clusterscripts && npm run minify:clusterscripts"
   },
   "engines": {
     "node": ">=20"

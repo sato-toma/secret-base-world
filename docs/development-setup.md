@@ -63,7 +63,15 @@ TypeScriptソースを `UnityProject/Assets/Project/Script/src/` に配置して
 npm run build:clusterscripts
 ```
 
-公式の型定義を `node_modules/@types/cluster-script/` に取得し、TypeScriptを `UnityProject/Assets/Project/Script/dist/` にコンパイルしてJavaScriptを縮小します。出力先の同名ファイルは上書きされ、削除済みソースの古い出力は自動削除されません。型定義はビルドのたびに公式サイトから取得されるため、取得時点でのAPIに依存します。ビルド結果をUnityのScriptableItemに割り当て、Unityで生成される `.meta` とともに管理してください。ソースがない状態ではビルドは失敗します。
+生成JavaScriptはGit管理外なので、クローン後やソース変更後はUnity Editorを開く前にビルドしてください。
+
+`package.json` の `build:clusterscripts` が次の処理を順に実行します。
+
+1. `fetch:cluster-script-api`: 公式の型定義を `node_modules/@types/cluster-script/` に取得します。
+2. `compile:clusterscripts`: `scripts/cluster-script-tsconfig.json` を使い、TypeScriptを `UnityProject/Assets/Project/Script/dist/` にコンパイルします。
+3. `minify:clusterscripts`: 出力されたJavaScriptを縮小します。
+
+各工程は個別にも実行できます。型定義はビルドごとに公式サイトから取得されるため、取得時点でのAPIに依存します。生成された `.js` はGit管理せず、`.gitignore` で除外します。一方、Unityの `ScriptableItem` が参照するGUIDを維持するため、対応する `.js.meta` はGit管理します。TypeScriptソースと `.ts.meta` もGit管理します。ビルド後にUnityでアセットをインポートし、`.meta` が未作成の場合は生成・確認してコミットしてください。ソースがない状態ではビルドは失敗し、削除済みソースの古い出力は自動削除されません。
 
 これらの型定義取得・縮小処理および `LOCKED_` 保護ルールは [sato-toma/room](https://github.com/sato-toma/room) の機能をこのプロジェクトの配置に合わせて改変したものです。原著作者は Cluster, Inc. と azuki、元プロジェクトの条件は [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) です。room固有のシーンやBGMは移植していません。
 
