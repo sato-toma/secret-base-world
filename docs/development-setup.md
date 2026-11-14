@@ -2,7 +2,17 @@
 
 ## Unityプロジェクト
 
-このリポジトリにはUnityシーンやUnityプロジェクト一式を含めていません。利用するCluster Creator KitテンプレートまたはUnityプロジェクトを用意し、`UnityProject/` に配置してください。Unity EditorとCCKの対応バージョンは、利用するテンプレートと公式ドキュメントで確認します。
+このリポジトリにはCluster Creator Kitテンプレートを `UnityProject/` に配置します。初回セットアップでは、リポジトリルートからPowerShellで次を実行してください。
+
+```powershell
+.\scripts\setup-cluster-template.ps1
+```
+
+このスクリプトは公式の[テンプレートアーカイブ](https://github.com/ClusterVR/ClusterCreatorKitTemplate/archive/master.zip)をダウンロード・展開し、Unityプロジェクト一式を `UnityProject/` にコピーします。シーンだけでなく、参照されるAsset、`.meta`、`Packages/`、`ProjectSettings/`も含めます。Unityの生成物はルートの`.gitignore`で除外し、プロジェクトのソースAssetと設定はGit管理します。
+
+テンプレートには複数のサンプルが含まれます。最小構成から始める場合は `Assets/ClusterCreatorKitTemplate/Minimal/Scenes/MinimalSample.unity` を開いてください。シーンの依存Assetを保つため、`UnityProject/Assets/ClusterCreatorKitTemplate/`以下を部分的に移動・削除しないでください。
+
+テンプレート配布元の`README.md`と`LICENSE.md`も `UnityProject/` に保持します。テンプレートは[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)で提供されています。公式の導入記事は[テンプレートワールドの導入方法](https://creator.cluster.mu/2021/10/15/template-sample/)です。Unity EditorとCCKのバージョン要件は、取得したテンプレートの`README.md`を確認してください。
 
 `.mcp.json` のUnity MCP設定は `UnityProject/` をUnityプロジェクトのルートとして起動します。別の配置にする場合は、設定の `--project-path` を変更してください。
 
