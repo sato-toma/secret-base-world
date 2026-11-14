@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "blender": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "scripts/blender-mcp.mjs"
+      ],
+      "env": {
+        "BLENDER_MCP_OUTPUT_DIR": "UnityProject/Assets/Generated/Blender"
+      }
+    },
+    "unity": {
+      "type": "stdio",
+      "command": "unity",
+      "args": [
+        "mcp",
+        "--project-path",
+        "UnityProject"
+      ]
+    }
+  }
+}

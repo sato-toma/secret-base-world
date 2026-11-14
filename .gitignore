@@ -1,0 +1,30 @@
+# Node.js
+/node_modules/
+npm-debug.log*
+
+# Unity project generated files
+/UnityProject/[Ll]ibrary/
+/UnityProject/[Tt]emp/
+/UnityProject/[Oo]bj/
+/UnityProject/[Bb]uild/
+/UnityProject/[Bb]uilds/
+/UnityProject/[Ll]ogs/
+/UnityProject/[Uu]ser[Ss]ettings/
+/UnityProject/.vs/
+/UnityProject/.gradle/
+/UnityProject/SceneGraph.generated.toml
+/UnityProject/[Mm]emoryCaptures/
+/UnityProject/*.csproj
+/UnityProject/*.sln
+/UnityProject/*.suo
+/UnityProject/*.user
+/UnityProject/*.userprefs
+/UnityProject/*.pidb
+/UnityProject/*.pdb
+/UnityProject/*.mdb
+/UnityProject/*.opendb
+/UnityProject/*.VC.db
+/UnityProject/*.apk
+/UnityProject/*.aab
+/UnityProject/*.unitypackage
+/UnityProject/crashlytics-build.properties
