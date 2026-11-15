@@ -8,6 +8,7 @@ const dist = path.join(__dirname, "..", "UnityProject", "Assets", "Project", "Sc
 const startSource = fs.readFileSync(path.join(dist, "spinStartScript.js"), "utf8");
 const playerSource = fs.readFileSync(path.join(dist, "spinPlayerScript.js"), "utf8");
 const stopSource = fs.readFileSync(path.join(dist, "spinStopScript.js"), "utf8");
+const collisionStopSource = fs.readFileSync(path.join(dist, "spinCollisionStopScript.js"), "utf8");
 
 class Vector3 {
   constructor(x, y, z) {
@@ -198,4 +199,16 @@ test("throttles stop notifications across overlapping players", () => {
   stopUpdate(0.08);
   stopUpdate(0.13);
   assert.deepEqual(sent, ["a", "b", "c"]);
+});
+
+test("collision stop notifies only the player involved in the collision", () => {
+  let onCollide;
+  const sent = [];
+  vm.runInNewContext(collisionStopSource, {
+    $: { onCollide(callback) { onCollide = callback; } },
+  });
+  onCollide({ handle: null });
+  onCollide({ handle: { type: "item", send() { throw new Error("not a player"); } } });
+  onCollide({ handle: { type: "player", send(type, arg) { sent.push([type, arg]); } } });
+  assert.deepEqual(sent, [["spin-stop", null]]);
 });
