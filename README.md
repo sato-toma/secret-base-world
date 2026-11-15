@@ -30,3 +30,7 @@ Cluster向けワールド制作のための開発拠点です。UnityとBlender�
 - `.mcp.json`: UnityとBlenderのMCP接続設定
 
 Blender MCPは新しいシーンを基本形状から生成するもので、既存のBlenderシーンを編集するツールではありません。
+
+## 神殿の背景
+
+`SpinRoutePrototype` はBuilt-inの `Skybox/Panoramic` と静止した全天画像を使用します。浮遊島・水鏡・雲海は背景画像であり、地形やリアルタイム反射ではありません。画像の生成元は `UnityProject/AgentScripts/DreamTempleSky.cs` です。Unity Editorを開いた状態でUnity MCPの `run_script` に `AgentScripts/DreamTempleSky.cs` とエントリーポイント `DreamTempleSky.Generate` を指定すると、追跡対象の `DreamTempleSky.png` を上書き生成します。既存の `.meta` とマテリアルの参照は維持してください。
