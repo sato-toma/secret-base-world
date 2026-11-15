@@ -99,13 +99,16 @@ _.onFrame((deltaTime) => {
   const centerProgress = distance > 0
     ? Math.min(1, centerMoveSpeed * deltaTime / distance)
     : 0;
+  const horizontalMoveTime = moveDirection.y === 0
+    ? Math.max(0, deltaTime - distance / centerMoveSpeed)
+    : deltaTime;
   // Keep the commanded vertical path independent of position drift during a jump.
   targetPosition = new Vector3(
-    position.x + offsetX * centerProgress + moveDirection.x * horizontalMoveSpeed * deltaTime,
+    position.x + offsetX * centerProgress + moveDirection.x * horizontalMoveSpeed * horizontalMoveTime,
     moveDirection.y === 0
       ? position.y
       : targetPosition.y + moveDirection.y * verticalMoveSpeed * deltaTime,
-    position.z + offsetZ * centerProgress + moveDirection.z * horizontalMoveSpeed * deltaTime,
+    position.z + offsetZ * centerProgress + moveDirection.z * horizontalMoveSpeed * horizontalMoveTime,
   );
   _.setPosition(targetPosition);
 

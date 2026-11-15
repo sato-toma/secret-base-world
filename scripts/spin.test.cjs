@@ -114,14 +114,14 @@ test("downward spin follows its commanded path despite upward position drift", (
   assert.equal(s.position().z, 6);
 });
 
-test("horizontal spin centers only the sideways axis and preserves height", () => {
+test("horizontal spin centers before moving forward and preserves height", () => {
   const s = setup(new Vector3(1, 0, 0), new Vector3(11, -3, 6.4));
   s.respond();
   s.frame(0.1);
-  assert.ok(Math.abs(s.position().x - 11.1) < 1e-6);
+  assert.equal(s.position().x, 11);
   assert.ok(Math.abs(s.position().z - 6.3) < 1e-6);
   s.frame(0.5);
-  assert.ok(Math.abs(s.position().x - 11.6) < 1e-6);
+  assert.ok(Math.abs(s.position().x - 11.2) < 1e-6);
   assert.equal(s.position().y, -3);
   assert.equal(s.position().z, 6);
   s.setPosition(new Vector3(11, -3, 6));
