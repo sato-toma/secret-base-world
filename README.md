@@ -34,3 +34,5 @@ Blender MCPは新しいシーンを基本形状から生成するもので、既
 ## 神殿の背景
 
 `SpinRoutePrototype` はBuilt-inの `Skybox/Panoramic` と静止した全天画像を使用します。浮遊島・水鏡・雲海は背景画像であり、地形やリアルタイム反射ではありません。画像の生成元は `UnityProject/AgentScripts/DreamTempleSky.cs` です。Unity Editorを開いた状態でUnity MCPの `run_script` に `AgentScripts/DreamTempleSky.cs` とエントリーポイント `DreamTempleSky.Generate` を指定すると、追跡対象の `DreamTempleSky.png` を上書き生成します。既存の `.meta` とマテリアルの参照は維持してください。
+
+全天画像は縦の継ぎ目を防ぐため、横方向のRepeatを有効にし、ミップマップを無効にしています。

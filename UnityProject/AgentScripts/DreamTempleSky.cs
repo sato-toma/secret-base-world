@@ -257,7 +257,8 @@ public static class DreamTempleSky
         importer.wrapModeU = TextureWrapMode.Repeat;
         importer.wrapModeV = TextureWrapMode.Clamp;
         importer.maxTextureSize = Width;
-        importer.mipmapEnabled = true;
+        // Mip sampling across the panoramic UV wrap produces a visible vertical seam.
+        importer.mipmapEnabled = false;
         importer.SaveAndReimport();
         return ImagePath;
     }
