@@ -11,15 +11,29 @@ $.onUpdate(() => {
 
     currentPlayerIds.add(player.id);
     if (!spinStartOverlappingPlayerIds.has(player.id)) {
-      const direction = new Vector3(0, 0, 1).applyQuaternion($.getRotation());
-      if (direction.lengthSq() > 0) {
-        direction.normalize();
-      }
-
       $.setPlayerScript(player);
-      player.send("spin-direction", direction);
     }
   }
 
   spinStartOverlappingPlayerIds = currentPlayerIds;
 });
+
+$.onReceive(
+  (messageType, _arg, sender) => {
+    if (messageType !== "spin-ready" || sender.type !== "player") {
+      return;
+    }
+
+    const direction = new Vector3(0, 0, 1).applyQuaternion($.getRotation());
+    if (direction.lengthSq() === 0) {
+      $.log("Spin movement could not start because the direction is zero.");
+      return;
+    }
+
+    sender.send("spin-start", {
+      direction: direction.normalize(),
+      center: $.getPosition(),
+    });
+  },
+  { player: true, item: false },
+);

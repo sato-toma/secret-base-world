@@ -1,0 +1,3 @@
+{
+  "extends": "./scripts/cluster-script-tsconfig.json"
+}

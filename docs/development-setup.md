@@ -68,10 +68,14 @@ npm run build:clusterscripts
 `package.json` の `build:clusterscripts` が次の処理を順に実行します。
 
 1. `fetch:cluster-script-api`: 公式の型定義を `node_modules/@types/cluster-script/` に取得します。
-2. `compile:clusterscripts`: `scripts/cluster-script-tsconfig.json` を使い、TypeScriptを `UnityProject/Assets/Project/Script/dist/` にコンパイルします。
+2. `compile:clusterscripts`: ルートの `tsconfig.json`（`scripts/cluster-script-tsconfig.json` を継承）を使い、TypeScriptを `UnityProject/Assets/Project/Script/dist/` にコンパイルします。この設定はエディターでも自動検出されます。
 3. `minify:clusterscripts`: 出力されたJavaScriptを縮小します。
 
 各工程は個別にも実行できます。型定義はビルドごとに公式サイトから取得されるため、取得時点でのAPIに依存します。生成された `.js` はGit管理せず、`.gitignore` で除外します。一方、Unityの `ScriptableItem` が参照するGUIDを維持するため、対応する `.js.meta` はGit管理します。TypeScriptソースと `.ts.meta` もGit管理します。ビルド後にUnityでアセットをインポートし、`.meta` が未作成の場合は生成・確認してコミットしてください。ソースがない状態ではビルドは失敗し、削除済みソースの古い出力は自動削除されません。
+
+エディターの型エラーを解消するためだけに型定義が必要な場合は、リポジトリルートで `npm run fetch:cluster-script-api` を実行してください。
+
+Spinのスクリプトを変更した場合は、ビルド後に `node --test scripts\spin.test.cjs` を実行します。このテストはメッセージと移動計算の模擬検証であり、Cluster上の衝突やアバターの動作は別途試遊してください。
 
 これらの型定義取得・縮小処理および `LOCKED_` 保護ルールは [sato-toma/room](https://github.com/sato-toma/room) の機能をこのプロジェクトの配置に合わせて改変したものです。原著作者は Cluster, Inc. と azuki、元プロジェクトの条件は [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) です。room固有のシーンやBGMは移植していません。
 
