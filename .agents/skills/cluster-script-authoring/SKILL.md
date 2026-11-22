@@ -23,6 +23,7 @@ Cluster Creator Kit で ClusterScript を書き、Unity シーンに配置する
 3. `$.on...` のコールバック登録の位置や、各 API を呼べる場所は、公式 API 定義の記載に従う。
 4. 状態は `$.state` の直接変更を避け、`$.setStateCompat` を使う。配列の `push` や入れ子代入は解析ルールが検出する。
 5. Unity 側の変更（Component 追加、ScriptableItem 参照）は、ユーザーの承認を得てから行う。
+6. 接触で処理が始まらないときは、Script の参照・実行だけでなく、必要な Collider の有効状態、実寸、`Center`、親子 Transform 適用後の判定範囲、Trigger設定をUnity上で確認する。見た目に触れたことと、実際にOverlapやコールバックが発生したことを区別し、動作する同種Itemとの設定差も調べる。
 
 ## 公式情報
 
